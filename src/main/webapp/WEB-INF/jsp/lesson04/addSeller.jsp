@@ -16,7 +16,7 @@
 		<form method="post" action="/lesson04/quiz01/add_seller">
 			<div class="form-group">
 				<label for="nickname"><b>닉네임</b></label>
-				<input type="text" id="nickname" name="nickname" class="form-control col-3" placeholder="닉네임을 입력하세요">
+				<input type="text" id="nickname" name="nickname" class="form-control col-3" placeholder="닉네임을 입력해주세요">
 			</div>
 			<div class="form-group">
 				<label for="profileImageUrl"><b>프로필 사진 URL</b></label>

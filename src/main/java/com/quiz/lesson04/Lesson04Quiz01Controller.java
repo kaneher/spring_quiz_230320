@@ -18,36 +18,41 @@ public class Lesson04Quiz01Controller {
 	@Autowired
 	private SellerBO sellerBO;
 	
-	// view
+	// view 판매자 추가 페이지
 	@RequestMapping(path = "/add_seller_view", method = RequestMethod.GET)
 	public String addSellerView() {
 		// /WEB-INF/jsp/          .jsp
 		return "lesson04/addSeller";
 	}
 	
+	// 추가 action      input태그에 아무것도 입력하지 않았으면 null이 아니라 ""로 들어온다
 	@RequestMapping(path = "/add_seller", method = RequestMethod.POST)
 	public String addSeller(
 			@RequestParam(value = "nickname") String nickname,
 			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl,
-			@RequestParam(value = "temperature", required = false) String temperature) {
-		
+			@RequestParam(value = "temperature") double temperature
+			) {
 		sellerBO.addSeller(nickname, profileImageUrl, temperature);
 		return "lesson04/afterAddSeller";
 	}
 	
+	// 최근 가입자 정보 페이지
 	@GetMapping("/seller_info")
-	public String sellerInfoView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String sellerInfoView(
+			@RequestParam(value = "id", required = false) Integer id,
+			Model model
+			) {
+		
+		Seller seller = null;
+		
 		if (id != null) {
-			Seller seller = sellerBO.getSellerInfo(id);
-			model.addAttribute("result", seller);
-			model.addAttribute("title", "판매자 정보");
-			return "lesson04/getSellerInfo";
+			seller = sellerBO.getSellerInfoById(id);
 		} else {
-			Seller seller = sellerBO.getLatestSellerInfo();
-			model.addAttribute("result", seller);
-			model.addAttribute("title", "판매자 정보");
-			return "lesson04/getSellerInfo";
+			seller = sellerBO.getLatestSellerInfo();
 		}
+		
+		model.addAttribute("result", seller);
+		model.addAttribute("title", "가입자 정보");
+		return "lesson04/getSellerInfo";
 	}
 }

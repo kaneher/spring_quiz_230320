@@ -12,12 +12,12 @@ public class SellerBO {
 	@Autowired
 	private SellerMapper sellerMapper;
 
-	public void addSeller(String nickname, String profileImageUrl, String temperature) {
+	public void addSeller(String nickname, String profileImageUrl, double temperature) {
 		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
 	}
 	
-	public Seller getSellerInfo(Integer id) {
-		return sellerMapper.selectSellerInfo(id);
+	public Seller getSellerInfoById(int id) {
+		return sellerMapper.selectSellerInfoById(id);
 	}
 	
 	public Seller getLatestSellerInfo() {

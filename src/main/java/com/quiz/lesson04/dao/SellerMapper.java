@@ -9,12 +9,12 @@ import com.quiz.lesson04.domain.Seller;
 public interface SellerMapper {
 
 	public void insertSeller(
-			@Param("nickname") String nickname, 
-			@Param("profileImageUrl") String profileImageUrl, 
-			@Param("temperature") String temperature
+			@Param("nickname") String nickname,
+			@Param("profileImageUrl") String profileImageUrl,
+			@Param("temperature") double temperature
 			);
 	
-	public Seller selectSellerInfo(Integer id);
+	public Seller selectSellerInfoById(int id);
 	
 	public Seller selectLatestSellerInfo();
 }

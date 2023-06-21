@@ -22,7 +22,7 @@
 		)
 	</insert>
 	
-	<select id="selectSellerInfo" resultType="com.quiz.lesson04.domain.Seller" parameterType="Integer">
+	<select id="selectSellerInfoById" resultType="com.quiz.lesson04.domain.Seller" parameterType="int">
 		SELECT
 			`id`
 			,`nickname`

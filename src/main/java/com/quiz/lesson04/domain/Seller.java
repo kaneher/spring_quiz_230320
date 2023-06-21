@@ -6,7 +6,7 @@ public class Seller {
 	private int id;
 	private String nickname;
 	private String profileImageUrl;
-	private String temperature;
+	private double temperature;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -28,10 +28,10 @@ public class Seller {
 	public void setProfileImageUrl(String profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
 	}
-	public String getTemperature() {
+	public double getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(String temperature) {
+	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
 	public Date getCreatedAt() {
@@ -45,6 +45,11 @@ public class Seller {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	@Override
+	public String toString() {
+		return "닉네임 : " + this.nickname;
 	}
 	
 }

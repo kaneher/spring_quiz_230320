@@ -33,10 +33,13 @@ public class Lesson04Quiz02Controller {
 		realtorBO.addRealtor(realtor);
 		// realtor.getId();
 		
-		// select DB
+		// select DB By Id
 		Realtor latestRealtor = realtorBO.getRealtorById(realtor.getId());
+		
+		// model 담기
 		model.addAttribute("result", latestRealtor);
 		
+		// 결과 페이지 이동
 		return "lesson04/afterAddRealtor";
 	}
 }

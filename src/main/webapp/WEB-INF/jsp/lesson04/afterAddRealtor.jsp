@@ -11,28 +11,28 @@
 </head>
 <body>
 	<div class="container">
-	
 		<h1>공인중개사 정보</h1>
+		
 		<table class="table">
 			<tr>
-				<th class="font-weight-bold">ID</th>
-				<td class="font-weight-bold">${result.id}</td>
+				<th>ID</th>
+				<td>${result.id}</td>
 			</tr>
 			<tr>
-				<th class="font-weight-bold">상호명</th>
-				<td class="font-weight-bold">${result.office}</td>
+				<th>상호명</th>
+				<td>${result.office}</td>
 			</tr>
 			<tr>
-				<th class="font-weight-bold">전화번호</th>
-				<td class="font-weight-bold">${result.phoneNumber}</td>
+				<th>전화번호</th>
+				<td>${result.phoneNumber}</td>
 			</tr>
 			<tr>
-				<th class="font-weight-bold">주소</th>
-				<td class="font-weight-bold">${result.address}</td>
+				<th>주소</th>
+				<td>${result.address}</td>
 			</tr>
 			<tr>
-				<th class="font-weight-bold">등급</th>
-				<td class="font-weight-bold">${result.grade}</td>
+				<th>등급</th>
+				<td>${result.grade}</td>
 			</tr>
 		</table>
 	</div>

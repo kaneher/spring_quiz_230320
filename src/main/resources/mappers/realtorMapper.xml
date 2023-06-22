@@ -35,8 +35,7 @@
 			,`updatedAt`
 		FROM
 			`realtor`
-		ORDER BY
-			`id` DESC
-		LIMIT 1
+		WHERE
+			`id` = #{id}
 	</select>
 </mapper>

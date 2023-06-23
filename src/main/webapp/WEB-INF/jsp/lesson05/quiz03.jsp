@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSTL Core 라이브러리 (2)</title>
+<title>JSTL fmt 라이브러리</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
@@ -13,61 +14,57 @@
 <body>
 	<div class="container">
 	
-		<h1>TOP 5</h1>
+		<h1>1. 후보자 득표율</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>순위</th>
-					<th>제목</th>
+					<th>기호</th>
+					<th>득표 수</th>
+					<th>득표 율</th>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${musicRanking}" var="music" varStatus="status">
+			<c:forEach items="${candidates}" var="getVoted" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td>${music}</td>
+					<td>
+						<fmt:formatNumber value="${getVoted}" />
+					</td>
+					<td>
+						<fmt:formatNumber value="${getVoted / totalCount}" type="percent" />
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 		
-		<h1>멤버십</h1>
+		<h1>2. 카드 명세서</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>이름</th>
-					<th>전화번호</th>
-					<th>등급</th>
-					<th>포인트</th>
+					<th>사용처</th>
+					<th>가격</th>
+					<th>사용 날짜</th>
+					<th>할부</th>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${membership}" var="member">
+			<c:forEach items="${cardBills}" var="cardBill">
 				<tr>
-					<td>${member.name}</td>
-					<td>${member.phoneNumber}</td>
 					<td>
-						<c:choose>
-							<c:when test="${member.grade eq \"VIP\"}">
-								<span class="text-danger">${member.grade}</span>
-							</c:when>
-							<c:when test="${member.grade == 'GOLD'}">
-								<span class="text-warning">${member.grade}</span>
-							</c:when>
-							<c:otherwise>
-								${member.grade}
-							</c:otherwise>
-						</c:choose>
+						${cardBill.store}
 					</td>
 					<td>
-						<c:choose>
-							<c:when test="${member.point >= 5000}">
-								<span class="text-primary">${member.point}P</span>
-							</c:when>
-							<c:otherwise>
-								${member.point}P
-							</c:otherwise>
-						</c:choose>
+						<fmt:formatNumber value="${cardBill.pay}" type="currency" />
+					</td>
+					<td>
+						<%-- String to Date : fmt:parseDate --%>
+						<fmt:parseDate value="${cardBill.date}" pattern="yyyy-MM-dd" var="date" />
+						<%-- Date to String : fmt:formatDate --%>
+						<fmt:formatDate value="${date}" pattern="yyyy일 M월 d일" />
+					</td>
+					<td>
+						${cardBill.installment}
 					</td>
 				</tr>
 			</c:forEach>

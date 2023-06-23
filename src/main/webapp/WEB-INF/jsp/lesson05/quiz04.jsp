@@ -32,13 +32,32 @@
 					<td>${status.count}</td>
 					<td>${member.name}</td>
 					<td>
-						<c:if test="${fn:startsWith(member.phoneNumber, '010')}">
-							
-						</c:if>
+						<c:choose>
+							<c:when test="${fn:startsWith(member.phoneNumber, '010')}">
+								${member.phoneNumber}
+							</c:when>
+							<c:otherwise>
+								<span>유효하지 않은 전화번호</span>
+							</c:otherwise>
+						</c:choose>
 					</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>
+						${fn:replace(member.nationality, '삼국시대', '삼국-')}
+					</td>
+					<td>
+						<b>${fn:split(member.email, '@')[0]}</b>@${fn:split(member.email, '@')[1]}
+					</td>
+					<td>
+					<c:choose>
+						<c:when test="${fn:length(member.introduce) > 15}">
+							<c:set var="introduce" value="${fn:substring(member.introduce, 0, 15)} ..." />
+							${introduce}
+						</c:when>
+						<c:otherwise>
+							${member.introduce}
+						</c:otherwise>
+					</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>

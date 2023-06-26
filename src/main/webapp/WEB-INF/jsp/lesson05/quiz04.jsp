@@ -15,6 +15,8 @@
 <body>
 	<div class="container">
 		<h1>회원 정보 리스트</h1>
+		<img src="/image/sunny.jpg">
+		
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -42,7 +44,7 @@
 						</c:choose>
 					</td>
 					<td>
-						${fn:replace(member.nationality, '삼국시대', '삼국-')}
+						${fn:replace(member.nationality, '삼국시대', '삼국 - ')}
 					</td>
 					<td>
 						<b>${fn:split(member.email, '@')[0]}</b>@${fn:split(member.email, '@')[1]}

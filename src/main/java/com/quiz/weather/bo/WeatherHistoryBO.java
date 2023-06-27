@@ -1,5 +1,6 @@
 package com.quiz.weather.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class WeatherHistoryBO {
 	
 	public List<WeatherHistory> getWeatherHistory() {
 		return weatherHistoryMapper.selectWeatherHistory();
+	}
+	
+	public void addWeatherHistory(Date date, String weather, String microDust, double temperatures, double precipitation, double windSpeed) {
+		weatherHistoryMapper.insertWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
 	}
 
 }

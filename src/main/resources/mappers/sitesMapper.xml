@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quiz.lesson06.dao.SitesMapper">
+	<insert id="insertSites" parameterType="map">
+		INSERT INTO `sites`
+		(
+			`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{subject}
+			, #{address}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
+	<select id="selectSites" resultType="com.quiz.lesson06.domain.Sites">
+		SELECT
+			`id`
+			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`sites`
+	</select>
+</mapper>

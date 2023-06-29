@@ -15,7 +15,8 @@
 </head>
 <body>
 	<div class="container">
-		<h1>즐겨찾기 목록</h1>
+	
+		<h1 class="text-center my-3">즐겨찾기 목록</h1>
 		
 		<table class="table text-center">
 			<thead>
@@ -26,9 +27,9 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${sitesList}" var="site" varStatus="status">
+			<c:forEach items="${sitesList}" var="site">
 				<tr>
-					<td>${status.count}</td>
+					<td>${site.id}</td>
 					<td>${site.name}</td>
 					<td>${site.url}</td>
 				</tr>

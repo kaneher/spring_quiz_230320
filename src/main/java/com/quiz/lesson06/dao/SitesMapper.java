@@ -9,6 +9,7 @@ import com.quiz.lesson06.domain.Sites;
 
 @Repository
 public interface SitesMapper {
+	
 	public void insertSites(
 			@Param("subject") String subject,
 			@Param("address") String address);

@@ -12,39 +12,45 @@
 </head>
 <body>
 	<div class="container">
-		<h1>즐겨찾기 추가하기</h1>
+		<h1 class="text-center my-3">즐겨찾기 추가하기</h1>
 		
-		<div>
+		<div class="form-group">
 			<label for="subject"><b>제목</b></label>
-			<input type="text" id="subject" name="subject" class="form-control col-8 mb-3" placeholder="제목을 입력하세요.">
+			<input type="text" id="subject" class="form-control mb-3" placeholder="제목을 입력하세요.">
+			
 			<label for="address"><b>주소</b></label>
-			<input type="text" id="address" name="address" class="form-control col-8 mb-3" placeholder="주소를 입력하세요.">
-			<input type="button" id="addBtn" class="btn btn-success col-8" value="추가">
+			<div class="d-flex justify-content-center align-items-center mb-3">
+				<input type="text" id="address" class="form-control col-11 mr-3" placeholder="주소를 입력하세요.">
+				<button type="button" id="addressCheckBtn" class="btn btn-info col-1 px-0">중복확인</button>
+			</div>
+			
+			<input type="button" id="addSitesBtn" class="btn btn-success mt-3 w-100" value="추가">
 		</div>
 	</div>
 	
 <script>
 	$(document).ready(function() {
-		$('#addBtn').on('click', function() {
+		$('#addSitesBtn').on('click', function() {
 			// alert("클릭");
 			
 			// validation
 			let subject = $('#subject').val().trim();
+			let address = $('#address').val().trim();
+			
 			if (!subject) {
 				alert("제목을 입력하세요.");
 				return;
 			}
-			
-			let address = $('#address').val().trim();
 			if (!address) {
 				alert("주소를 입력하세요.");
 				return;
 			}
-			if (!(address.startsWith('http') || address.startsWith('https'))) {
-				alert("주소는 http나 https로 시작해야 합니다.");
+			if (address.startsWith('http://') == false && address.startsWith('https://') == false) {
+				alert("주소 형식이 잘못 되었습니다.");
 				return;
 			}
 			
+			// AJAX 통신 => 서버 요청
 			$.ajax({
 				// request
 				type:"post"
@@ -52,12 +58,18 @@
 				, data:{"subject":subject, "address":address}
 				
 				// response
-				, success:function(data) {
-					if (data == "추가 성공!!!") {
-						location.href = "/lesson06/quiz01/after_add_sites_view";
+				, success:function(data) { // String, JSON => 자바스크립트의 객체 변환
+					/* alert(data.code);
+					alert(data.result); */
+					
+					if (data.result == "성공") {
+						location.href = "/lesson06/quiz01/after_add_sites_view"; // GET method
 					} else {
 						alert("즐겨찾기 추가에 실패했습니다.");
 					}
+				}
+				, error:function(request, status, error) {
+					alert("즐겨찾기 추가하는데 실패했습니다.");
 				}
 			});
 		});

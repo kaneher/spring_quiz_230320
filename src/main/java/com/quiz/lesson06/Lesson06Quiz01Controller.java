@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,23 +23,32 @@ public class Lesson06Quiz01Controller {
 	@Autowired
 	private SitesBO sitesBO;
 
+	// 문제1 : 즐겨찾기 추가 화면
 	@GetMapping("/add_sites_view")
 	public String addSitesView() {
 		return "lesson06/addSites";
 	}
 	
-	@PostMapping("/add_sites")
+	// 문제1 : AJAX의 요청
 	@ResponseBody
-	public String addSites(
+	@PostMapping("/add_sites")
+	public Map<String, Object> addSites(
 			@RequestParam("subject") String subject,
 			@RequestParam("address") String address) {
+		
 		// db insert
 		sitesBO.addSites(subject, address);
 		
-		// return string
-		return "추가 성공!!!";
+		// 응답
+		// {"code":1, "result":"성공"}     JSON String
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		
+		return result;
 	}
 	
+	// 문제2 : 즐겨찾기 목록 화면
 	@GetMapping("/after_add_sites_view")
 	public String afterAddSitesView(Model model) {
 		// select DB

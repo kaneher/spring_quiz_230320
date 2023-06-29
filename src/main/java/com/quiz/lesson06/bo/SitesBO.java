@@ -10,6 +10,7 @@ import com.quiz.lesson06.domain.Sites;
 
 @Service
 public class SitesBO {
+	
 	@Autowired
 	private SitesMapper sitesMapper;
 	

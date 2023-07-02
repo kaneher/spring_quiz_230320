@@ -21,4 +21,8 @@ public class SitesBO {
 	public List<Sites> getSites() {
 		return sitesMapper.selectSites();
 	}
+	
+	public boolean existSitesByAddress(String address) {
+		return sitesMapper.existSitesByAddress(address);
+	}
 }

@@ -57,4 +57,26 @@ public class Lesson06Quiz01Controller {
 		
 		return "lesson06/afterAddSites";
 	}
+	
+	// AJAX 요청
+	// 이름 중복확인
+	@ResponseBody
+	@RequestMapping("/is_duplication")
+	public Map<String, Boolean> isDuplication(
+			@RequestParam("address") String address) {
+			
+		// DB 조회
+		/*
+		 * select count(1) from `new_user` where `name` = '신보람';
+		 * 
+		 * 0 : false
+		 * 0이 아닌 수 : true
+		 */
+		boolean existAddress = sitesBO.existSitesByAddress(address);
+			
+		// {"isDuplication":true}
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("isDuplication", existAddress);
+		return result;
+	}
 }

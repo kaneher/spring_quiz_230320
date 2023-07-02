@@ -15,4 +15,6 @@ public interface SitesMapper {
 			@Param("address") String address);
 	
 	public List<Sites> selectSites();
+	
+	public boolean existSitesByAddress(String address);
 }

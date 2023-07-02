@@ -23,7 +23,7 @@
 				<input type="text" id="address" class="form-control col-11 mr-3" placeholder="주소를 입력하세요.">
 				<button type="button" id="addressCheckBtn" class="btn btn-info col-1 px-0">중복확인</button>
 			</div>
-			
+			<small id="errorMessage"></small>
 			<input type="button" id="addSitesBtn" class="btn btn-success mt-3 w-100" value="추가">
 		</div>
 	</div>
@@ -70,6 +70,33 @@
 				}
 				, error:function(request, status, error) {
 					alert("즐겨찾기 추가하는데 실패했습니다.");
+				}
+			});
+		});
+		
+		$('#addressCheckBtn').on('click', function() {
+			$('#addressCheckBtn').empty();
+			
+			let address = $('#address').val().trim();
+			
+			if (!address) {
+				$('#errorMessage').append('<span class="text-danger">주소를 입력해주세요.</span>');
+			}
+			
+			$.ajax({
+				// request
+				type:"get" // get일 때는 생략 가능
+				, url:"/lesson06/quiz01/is_duplication"
+				, data:{"address":address}
+				
+				// response
+				, success:function(data) {
+					if (data.isDuplication) { // 중복
+						$('#errorMessage').append('<span class="text-danger">중복된 이름입니다.</span>');
+					}
+				}
+				, error:function(request, status, error) {
+					alert("중복확인에 실패했습니다.");
 				}
 			});
 		});

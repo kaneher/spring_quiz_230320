@@ -38,4 +38,19 @@ public class Lesson07Quiz01RestController {
 		CompanyEntity company = companyBO.addCompany(name, business, scale, headcount);
 		return company;
 	}
+	
+	// U : Update
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		// id : 8, scale : 중소기업, headcount : 34명
+		return companyBO.updateCompanyById(8, "중소기업", 34);
+	}
+	
+	// D : Delete
+	@GetMapping("/delete")
+	public String delete() {
+		// id : 8
+		companyBO.deleteCompanyById(8);
+		return "수행 완료";
+	}
 }

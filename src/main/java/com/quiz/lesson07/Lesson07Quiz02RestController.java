@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.lesson07.dao.RecruitRepository;
@@ -36,12 +35,12 @@ public class Lesson07Quiz02RestController {
 //		return recruitRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
 		
 		// 5번
-//		return recruitRepository.findByTypeAndTop3ByOrderBySalaryDesc("계약직");
+//		return recruitRepository.findTop3ByTypeOrderBySalaryDesc("계약직");
 		
 		// 6번
-		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+//		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
 		
 		// 7번
-//		return recruitRepository.find
+		return recruitRepository.findByDeadlineAfterAndSalaryAndTypeOrderBySalaryDesc("2026-04-10", 8100, "정규직");
 	}
 }
